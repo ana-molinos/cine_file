@@ -23,5 +23,6 @@ extension Color {
         red:   255  / 255,
         green: 92   / 255,
         blue:  146  / 255
+    
     )
 }
