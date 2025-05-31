@@ -29,13 +29,11 @@ struct ContentView: View {
             VStack{
                 
                 ///Imagem de login
-                // TODO: PAREI AQUI!!!!!
                 Image("capa_login")
                     .resizable()
                     .scaledToFit() ///para não cortar
                     .frame(maxWidth: .infinity) ///para ocupar toda a largura da tela
-                    //.cornerRadius(60)
-                    .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
+                    .cornerRadius(60, corners: [.bottomLeft, .bottomRight]) ///struct utilitaria que o chat criou para poder escolher quais cantos arredondar
                 
                 Spacer() ///Spacer para separar a imagem do restante dos elementos
                 
@@ -80,19 +78,24 @@ struct ContentView: View {
                                 //Texto
                                 Text("Login com conta Apple")
                                     .font(.system(size: 24))
+                                
+                                ///Obs.: aqui foram aplicados os modificadores que alteram característica individuais de cada elemento da label
                             }
                                 
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(.white) //cor dos elementos na label
                         .padding(15)
-                        .frame(maxWidth:.infinity, maxHeight: 60)
-                        .background(Color.black)
+                        .frame(maxWidth:.infinity, maxHeight: 60) //tamanho da label
+                        .background(Color.black)//cor de fundo
                         .cornerRadius(30)
                         .overlay(
                                                 RoundedRectangle(cornerRadius: 30)
                                                     .stroke(Color.VERDE, lineWidth: 3)
-                                            )
+                                            ) //esse aqui serve para adicionar o stroke
                         
+                        ///Obs. 2: aqui foram aplicados os modificadores que alteram característica gerais para todos os elementos que tem dentro da label (ou seja, tudo que é em comum entre os elementos é modificado aqui)
+                        
+                        //2o botão
                         Button {
                             // TODO: chamar view adequada
                         } label: {
@@ -105,7 +108,6 @@ struct ContentView: View {
                                 Text("Login com esse aki")
                                     .font(.system(size: 24))
                             }
-                                
                         }
                         .foregroundColor(.black)
                         .padding(15)
@@ -116,6 +118,8 @@ struct ContentView: View {
                                                 RoundedRectangle(cornerRadius: 30)
                                                     .stroke(Color.black, lineWidth: 3)
                                             )
+                        
+                        //3o botão
                         Button {
                             // TODO: chamar view adequada
                         } label: {
