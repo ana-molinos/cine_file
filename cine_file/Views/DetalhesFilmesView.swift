@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct DetalhesFilmesView: View {
+    let filme: FilmModel
     var body: some View {
        
         
@@ -16,21 +17,25 @@ struct DetalhesFilmesView: View {
             Rectangle()
                 .fill(Color.ESCURO)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea(edges: .bottom)
+                .ignoresSafeArea()
             
+            
+                
             Image ("grid")
                 .resizable()
                 .frame(maxWidth: .infinity)
-                .edgesIgnoringSafeArea(.bottom)
+                .ignoresSafeArea()
             
             ScrollView(.vertical, showsIndicators: false){
             VStack {
-                Image ("filme16")
+                
+                Image (filme.imgName)
                     .resizable()
                     .scaledToFill()
                     .frame(width: .infinity, height: 400)
                     .offset(y: 80)
                     .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
+                Spacer()
                 
                 
                 
@@ -39,7 +44,7 @@ struct DetalhesFilmesView: View {
                     
                     HStack(spacing: 10){
                         
-                        Text("Serviço de Entregas da KIKI")
+                        Text(filme.title)
                             .foregroundColor(.white)
                             .font(.system(size: 26))
                             .fontWeight(.bold)
@@ -87,7 +92,7 @@ struct DetalhesFilmesView: View {
                                    
                                     HStack(){
                                         
-                                        Text("Hayao Miyazaki")
+                                        Text(filme.direction)
                                             .font(.system(size: 18))
                                             .foregroundColor(.white)
                                             
@@ -95,7 +100,7 @@ struct DetalhesFilmesView: View {
                                         Spacer()
                                        
                                         
-                                        Text("1988")
+                                        Text(filme.year)
             
                                             .font(.system(size: 18))
                                             .foregroundColor(.white)
@@ -108,7 +113,7 @@ struct DetalhesFilmesView: View {
                                 VStack{
                                     
                                     HStack(){
-                                        Text("Por ordem de sua mãe, Kiki parte para um aprendizado de um ano, acompanhada por seu gato preto. A um comando de sua vassoura mágica, ela vai parar na charmosa cidadezinha de Moreoastal. Infelizmente, os hotéis locais não aceitam bruxas e a polícia a flagra fazendo algumas travessuras.")
+                                        Text(filme.synopsis)
                                             
                                             .foregroundColor(.white)
                                             .font(.system(size: 18))
@@ -121,7 +126,105 @@ struct DetalhesFilmesView: View {
                                     }
                                 }
                             }
-                
+                           
+                            VStack(){
+                            
+                                ZStack(alignment: .center){
+                                    
+                                    
+                                    Rectangle()
+                                    
+                                        .fill(Color.VERDE)
+                                        .cornerRadius(20)
+                                        .frame(width: 350, height: 180)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.ESCURO, lineWidth: 3))
+                                    HStack(){
+                                    Text("Seu Review")
+                                        .fontWeight(.bold)
+                                        .padding(.bottom, 130)
+                                }
+                                    Rectangle()
+                                        .frame(height: 1)
+                                        .foregroundColor(.black)
+                                        .padding(.horizontal)
+                                        .padding(.bottom, 90)
+                                    
+                                    
+                                    
+                                    Text("EU AMOOO ESSE FILMEEEEEE É MEU FAVORITO DE TODOS OS TEMPOSSSSSS")
+                                        .multilineTextAlignment(.center)
+                                        .padding(.horizontal, 50)
+                                        .padding(.top, 40)
+                                        
+                                   
+                                     
+                                }
+                                
+                                
+                                VStack(alignment: .leading){
+                                    
+                                    HStack(){
+                                        Text ("Elenco (Dublagem)")
+                                           
+                                            .foregroundColor(.white)
+                                            .fontWeight(.black)
+                                            .font(.system(size: 24))
+                                        
+                                            
+                                    }
+                                   
+                                    
+                                    
+                                   
+                                        
+                                    ScrollView(.horizontal, showsIndicators: false){
+                                        HStack(){
+                                     
+                                            
+                                            Image ("filme3")
+                                                .resizable()
+                                                //.scaledToFill()
+                                                .frame(width: 150, height: (150*1.34))
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .overlay(
+                                                        RoundedRectangle(cornerRadius: 8)
+                                                            .strokeBorder(Color.VERDE, lineWidth: 2) // cor e espessura da borda
+                                                    )
+                                            
+                                            Image ("filme3")
+                                                .resizable()
+                                                //.scaledToFill()
+                                                .frame(width: 150, height: (150*1.34))
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .overlay(
+                                                        RoundedRectangle(cornerRadius: 8)
+                                                            .strokeBorder(Color.VERDE, lineWidth: 2) // cor e espessura da borda
+                                                    )
+                                            
+                                            Image ("filme3")
+                                                .resizable()
+                                                //.scaledToFill()
+                                                .frame(width: 150, height: (150*1.34))
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .overlay(
+                                                        RoundedRectangle(cornerRadius: 8)
+                                                            .strokeBorder(Color.VERDE, lineWidth: 2) // cor e espessura da borda
+                                                    )
+                                            
+                                            
+                                            
+                                                
+                                                
+                                        }
+                                    }
+                                }
+                                .padding()
+                                        
+                                }
+                                
+                            }
                                 }
                               
                                 }
@@ -140,10 +243,10 @@ struct DetalhesFilmesView: View {
     }
                   
         
-    }
+    
             
 
 #Preview {
-    DetalhesFilmesView()
+    DetalhesFilmesView(filme: FilmModel(imgName: "filme16", title: "Os Serviços de Entrega da Kiki", synopsis: "Por ordem de sua mãe, Kiki parte para um aprendizado de um ano, acompanhada por seu gato preto. A um comando de sua vassoura mágica, ela vai parar na charmosa cidadezinha de Moreoastal. Infelizmente, os hotéis locais não aceitam bruxas e a polícia a flagra fazendo algumas travessuras.", direction: "Hayao Miyazaki", screenwriters: "Hayao Miyazaki, Jack Fletcher, John Semper", year: "1990", favorited: false, watched: false) )
     
 }

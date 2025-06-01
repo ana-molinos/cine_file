@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TelaLogin: View {
+struct TelaLoginView: View {
     var body: some View {
         // MARK: Stack Principal
         ZStack()
@@ -26,6 +26,7 @@ struct TelaLogin: View {
                 .ignoresSafeArea(edges: .bottom)
             
             // MARK: Stack Vertical contendo os elementos da camada mais superficial
+            
             VStack{
                 
                 ///Imagem de login
@@ -36,79 +37,112 @@ struct TelaLogin: View {
                     .frame(maxWidth: .infinity) ///para ocupar toda a largura da tela
                 //.cornerRadius(60)
                     .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
-                
-                Spacer() ///Spacer para separar a imagem do restante dos elementos
-                
+                    
+                Spacer()
+                   
                 
                 VStack(spacing: 40){
-                    VStack(spacing: 10){
-                        Text("Coloque suas informações de cadastro")
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor( .white)
-                            .font(.system(size: 25))
-                            .multilineTextAlignment(.center)
-                            .padding(50)
-                            
+                   
+                    VStack(){
                         
-                        Spacer()
+                        HStack(spacing: 20){
+                            
+                            Text("Coloque suas informações de cadastro")
+                            
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor( .white)
+                                .font(.system(size: 28))
+                                .multilineTextAlignment(.center)
+                                
+                                
+                        }
+                        
+                        
+                       
                 
                         VStack{
                             
-                            Rectangle()
-                            
-                                .fill(Color.VERDE.opacity(0.8))
-                                .frame(width: 350, height: 40)
-                                .cornerRadius(20)
-                                .padding(05)
+                            ZStack() {
+                                Rectangle()
+                                
+                                    .fill(Color.VERDE.opacity(0.8))
+                                    .frame(width: 350, height: 40)
+                                    .cornerRadius(10)
+                                    .padding()
+                                
+                                Text("E-mail ou usuário")
+                                    .foregroundColor(.black)
+                                    .opacity(0.5)
+                                    .font(.system(size: 16))
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.trailing, 200)
+                            }
                             
                             HStack{
+                                
                                 Text("esqueci minha senha")
                                     .foregroundColor( .white)
                                     .font(.system(size: 16))
                                     .underline()
-                                    .padding(.leading, 170)
+                                    .padding(.leading, 180)
                                     
                                 
                                 
                             }
-                            Rectangle()
-                            
-                                .fill(Color.VERDE.opacity(0.8))
-                                .frame(width: 350, height: 40)
-                                .cornerRadius(20)
-                                .padding(25)
-                       
+                           
+                            ZStack() {
+                                Rectangle()
+                                
+                                    .fill(Color.VERDE.opacity(0.8))
+                                    .frame(width: 350, height: 40)
+                                    .cornerRadius(10)
+                                    .padding()
+                                
+                                Text("Digite sua senha")
+                                    .foregroundColor(.black)
+                                    .opacity(0.5)
+                                    .font(.system(size: 16))
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.trailing, 200)
+                            }
+
                             Button {
                                 
                             }
                             
                             label: {
                                 
-                                // MARK: Stack horizontal para poder ajustar o espaçamento entre o ícone e o texto do botão
+                            
                                 HStack(spacing: 15){
                                     
                                     
                                     //Texto
+                                    
                                     Text("Entrar")
                                         .font(.system(size: 24))
                                 }
                                     
                             }
+                            
                             .foregroundColor(.black)
                             .padding(15)
                             .frame(maxWidth: 200, maxHeight: 60)
                             .background(Color.VERDE)
                             .cornerRadius(30)
-                            .overlay(
-                                                    RoundedRectangle(cornerRadius: 30)
-                                                        .stroke(Color.ESCURO, lineWidth: 3)
-                                                )
+                            .overlay(RoundedRectangle(cornerRadius: 30)
+                             .stroke(Color.ESCURO, lineWidth: 3))
                             
                                     
                     }
+                        
                     }
-                    Spacer()
+                    .padding(0)
+                    
+                    
+                    
                 }
+                
+                Spacer()
             }
         }
         
@@ -116,6 +150,6 @@ struct TelaLogin: View {
 }
 
 #Preview {
-    TelaLogin()
+    TelaLoginView()
 }
 
