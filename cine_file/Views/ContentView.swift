@@ -12,12 +12,6 @@ struct ContentView: View {
         // MARK: Stack Principal
         ZStack()
         {
-            ///Fundo Azul
-            Rectangle()
-                .fill(Color.AZUL)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea(edges: .bottom) //Pra ocupar a tela toda
-            
             ///Grid na 2a camada
             Image("grid")
                 ///sempre resizable primeiro pq senao os demais modificadores nao vao funcionar
@@ -150,6 +144,7 @@ struct ContentView: View {
             }
             .padding(.bottom)
         }
+        .background(Color.AZUL)
     }
 }
 
