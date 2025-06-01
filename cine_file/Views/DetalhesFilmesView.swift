@@ -8,6 +8,7 @@ import SwiftUI
 
 struct DetalhesFilmesView: View {
     var body: some View {
+       
         
         
         
@@ -22,7 +23,7 @@ struct DetalhesFilmesView: View {
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.bottom)
             
-            
+            ScrollView(.vertical, showsIndicators: false){
             VStack {
                 Image ("filme16")
                     .resizable()
@@ -110,11 +111,13 @@ struct DetalhesFilmesView: View {
                                         Text("Por ordem de sua mãe, Kiki parte para um aprendizado de um ano, acompanhada por seu gato preto. A um comando de sua vassoura mágica, ela vai parar na charmosa cidadezinha de Moreoastal. Infelizmente, os hotéis locais não aceitam bruxas e a polícia a flagra fazendo algumas travessuras.")
                                             
                                             .foregroundColor(.white)
-                                            .font(.system(size: 16))
-                                            .multilineTextAlignment(.center)
-                                            .lineLimit(16)
+                                            .font(.system(size: 18))
+                                        
+
                                     }
-                                    
+                                    .padding(40)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(16)
                                     }
                                 }
                             }
@@ -132,6 +135,9 @@ struct DetalhesFilmesView: View {
                             
                         }
                     }
+    
+        
+    }
                   
         
     }
