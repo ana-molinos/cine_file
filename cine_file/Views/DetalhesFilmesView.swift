@@ -183,7 +183,7 @@ struct DetalhesFilmesView: View {
                                         HStack(){
                                      
                                             
-                                            Image ("filme3")
+                                            Image ("elenco1")
                                                 .resizable()
                                                 //.scaledToFill()
                                                 .frame(width: 150, height: (150*1.34))
@@ -193,7 +193,7 @@ struct DetalhesFilmesView: View {
                                                             .strokeBorder(Color.VERDE, lineWidth: 2) // cor e espessura da borda
                                                     )
                                             
-                                            Image ("filme3")
+                                            Image ("elenco2")
                                                 .resizable()
                                                 //.scaledToFill()
                                                 .frame(width: 150, height: (150*1.34))
@@ -203,7 +203,7 @@ struct DetalhesFilmesView: View {
                                                             .strokeBorder(Color.VERDE, lineWidth: 2) // cor e espessura da borda
                                                     )
                                             
-                                            Image ("filme3")
+                                            Image ("elenco3")
                                                 .resizable()
                                                 //.scaledToFill()
                                                 .frame(width: 150, height: (150*1.34))
