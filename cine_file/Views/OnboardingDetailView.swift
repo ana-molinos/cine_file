@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct OnboardingView: View{
+struct OnboardingDetailView: View{
     
+    let nomeImg: String
     let titulo: String
     let texto: String
     
@@ -17,46 +18,43 @@ struct OnboardingView: View{
         // MARK: Stack Principal
         ZStack()
         {
-            ///Fundo Azul
-            Rectangle()
-                .fill(Color.AZUL)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea(edges: .bottom) //Pra ocupar a tela toda
+            
             
             // MARK: Stack Vertical contendo os elementos da camada mais superficial
-            VStack{
+            VStack(spacing: 20){
                 
                 ///Imagem de login
-                Image("Aplicacao01")
+                Image(nomeImg)
                     .resizable()
                     .scaledToFit() ///para não cortar
-                    .frame(maxWidth: .infinity) ///para ocupar toda a largura da tela
-                    //.cornerRadius(60)
-                    .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
-                
+                    .frame(width: .infinity) ///para ocupar toda a largura da tela
+                    .cornerRadius(60, corners: [.bottomLeft, .bottomRight]) ///borda arredondada com utilitário do chat
+                    
                 // MARK: Stack que cuida do alinhamento dos textos
-                VStack(alignment: .leading){
+                VStack(alignment: .leading, spacing: 15){
+                    
+                    //Titulo
                     Text(titulo)
                         .foregroundColor( .white) ///cor branca da fonte
-                        .font(.system(size: 36)) ///tamanho
+                        .font(.system(size: 30)) ///tamanho
                         .fontWeight(.bold)
                             ///negrito
                         
-                    
+                    //Texto
                     Text(texto)
                         .foregroundStyle(.white)
                         .font(.system(size: 20))
-                        .fontWeight(.light)
                 }
+                .padding(.horizontal)
                 
-                Spacer() ///Spacer para separar a imagem do restante dos elementos
-                
+                // Spacer pra jogar tudo pra cima
+                Spacer()
             }
-            .padding(.bottom)
+            .background(Color.AZUL) //Fundo azul
         }
     }
 }
 
 #Preview {
-    OnboardingView(titulo: "Conheça o CineFilés", texto: "Só aqui você encontra a seleção dos melhores filmes de todos os tempos, resultado de uma curadoria altamente qualificada, feita pelos maiores especialistas da Apple Developer Academy.")
+    OnboardingDetailView(nomeImg: "Aplicacao01", titulo: "Conheça o CineFilés", texto: "Só aqui você encontra a seleção dos melhores filmes de todos os tempos, resultado de uma curadoria altamente qualificada, feita pelos maiores especialistas da Apple Developer Academy.")
 }
