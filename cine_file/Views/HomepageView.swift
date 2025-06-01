@@ -24,15 +24,13 @@ struct HomepageView: View {
 
     var body: some View {
         
-        // MARK: Scroll principal da View
-        ScrollView{
+        // MARK: Stack principal das camadas
+        ZStack{
+            Image("grid")
+                .resizable()
+                .ignoresSafeArea(edges: .top)
             
-            // MARK: Stack principal das camadas
-            ZStack{
-                Image("grid")
-                    .resizable()
-                    .ignoresSafeArea(edges: .top)
-                
+            ScrollView{
                 // MARK: Stack principal dos elementos na tela
                 VStack(spacing: 30){
                     
@@ -172,8 +170,9 @@ struct HomepageView: View {
                 }
                 .padding(.vertical, 20)
             }
-            .background(Color.AZUL)
         }
+        .background(Color.AZUL)
+
     }
 }
 
