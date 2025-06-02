@@ -12,3 +12,7 @@ struct ContentView: View{
         LoginView()
     }
 }
+
+#Preview {
+    ContentView()
+}

@@ -173,7 +173,8 @@ struct HomepageView: View {
             }
         }
         .background(Color.AZUL)
-
+        .padding(.vertical, 10)
+        
     }
 }
 

@@ -46,18 +46,7 @@ struct ListView: View{
                         
                         // MARK: Stack horizontal para os botões do cabeçalho
                         HStack(spacing: 30){
-                            
-                            // Botão de retorno
-                            Button {
-                                // TODO: Codar retorno para a homepage
-                            } label: {
-                                
-                                // Símbolo de voltar para a home
-                                Image(systemName: "chevron.backward")
-                                    .foregroundStyle(color)
-                                    .font(.system(size: 30))
-                            }
-                            
+                        
                             Spacer()
                             
                             // Botão de assistidos
@@ -156,6 +145,8 @@ struct ListView: View{
                 }
             }
             .background(Color.ESCURO)
+            .padding(.vertical, 10)
+            
     }
 }
 

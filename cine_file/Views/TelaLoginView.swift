@@ -8,145 +8,155 @@
 import SwiftUI
 
 struct TelaLoginView: View {
+    
+    @State private var email: String = ""
+    @State private var pwd: String = ""
+    
     var body: some View {
         // MARK: Stack Principal
-        ZStack()
-        {
-            ///Fundo Azul
-            Rectangle()
-                .fill(Color.AZUL)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea(edges: .bottom) //Pra ocupar a tela toda
-            
-            ///Grid na 2a camada
-            Image("grid")
-            ///sempre resizable primeiro pq senao os demais modificadores nao vao funcionar
-                .resizable()
-                .frame(maxWidth: .infinity) ///ocupa toda a largura da tera
-                .ignoresSafeArea(edges: .bottom)
-                .opacity(0.8)
-            
-            // MARK: Stack Vertical contendo os elementos da camada mais superficial
-            
-            VStack{
+        NavigationStack{
+            ZStack()
+            {
+                ///Fundo Azul
+                Rectangle()
+                    .fill(Color.AZUL)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea(edges: .bottom) //Pra ocupar a tela toda
                 
-                ///Imagem de login
-                // TODO: PAREI AQUI!!!!!
-                Image("capa_login")
+                ///Grid na 2a camada
+                Image("grid")
+                ///sempre resizable primeiro pq senao os demais modificadores nao vao funcionar
                     .resizable()
-                    .scaledToFit() ///para não cortar
-                    .frame(maxWidth: .infinity) ///para ocupar toda a largura da tela
-                //.cornerRadius(60)
-                    .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
-                    
-                Spacer()
-                   
+                    .frame(maxWidth: .infinity) ///ocupa toda a largura da tera
+                    .ignoresSafeArea(edges: .bottom)
+                    .opacity(0.8)
                 
-                VStack(spacing: 40){
-                   
-                    VStack(){
+                // MARK: Stack Vertical contendo os elementos da camada mais superficial
+                
+                VStack{
+                    
+                    ///Imagem de login
+                    // TODO: PAREI AQUI!!!!!
+                    Image("capa_login")
+                        .resizable()
+                        .scaledToFit() ///para não cortar
+                        .frame(maxWidth: .infinity) ///para ocupar toda a largura da tela
+                    //.cornerRadius(60)
+                        .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
                         
-                        HStack(spacing: 20){
-                            
-                            Text("Coloque suas informações de cadastro")
-                            
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor( .white)
-                                .font(.system(size: 28))
-                                .multilineTextAlignment(.center)
-                                
-                                
-                        }
-                        
-                        
+                    Spacer()
                        
-                
-                        VStack{
+                    
+                    VStack(spacing: 40){
+                       
+                        VStack(spacing: 30){
                             
-                            ZStack() {
-                                Rectangle()
+                            HStack(spacing: 20){
                                 
-                                    .fill(Color.VERDE.opacity(0.8))
-                                    .frame(width: 350, height: 40)
-                                    .cornerRadius(10)
-                                    .padding()
-                                
-                                Text("E-mail ou usuário")
-                                    .foregroundColor(.black)
-                                    .opacity(0.5)
-                                    .font(.system(size: 16))
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.trailing, 200)
-                            }
-                            
-                            HStack{
-                                
-                                Text("esqueci minha senha")
+                                Text("Coloque suas informações de cadastro")
+                                    .frame(maxWidth: .infinity)
                                     .foregroundColor( .white)
-                                    .font(.system(size: 16))
-                                    .underline()
-                                    .padding(.leading, 180)
-                                    
-                                
-                                
-                            }
-                           
-                            ZStack() {
-                                Rectangle()
-                                
-                                    .fill(Color.VERDE.opacity(0.8))
-                                    .frame(width: 350, height: 40)
-                                    .cornerRadius(10)
-                                    .padding()
-                                
-                                Text("Digite sua senha")
-                                    .foregroundColor(.black)
-                                    .opacity(0.5)
-                                    .font(.system(size: 16))
+                                    .font(.system(size: 20))
                                     .multilineTextAlignment(.leading)
-                                    .padding(.trailing, 200)
                             }
-
-                            Button {
+                    
+                            VStack(spacing: 30){
                                 
-                            }
-                            
-                            label: {
-                                
-                            
-                                HStack(spacing: 15){
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.VERDE)
                                     
                                     
-                                    //Texto
-                                    
-                                    Text("Entrar")
-                                        .font(.system(size: 24))
+                                    HStack {
+                                        TextField(
+                                            "",
+                                            text: $email,
+                                            prompt: Text("E-mail:")
+                                        )
+                                                .padding(.leading, 15)
+                                                .foregroundColor(.black)
+                                    }
                                 }
+                                .frame(height: 40)
+                                .padding(.horizontal, 30)
+                                
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.VERDE)
                                     
-                            }
-                            
-                            .foregroundColor(.black)
-                            .padding(15)
-                            .frame(maxWidth: 200, maxHeight: 60)
-                            .background(Color.VERDE)
-                            .cornerRadius(30)
-                            .overlay(RoundedRectangle(cornerRadius: 30)
-                             .stroke(Color.ESCURO, lineWidth: 3))
-                            
+                                    HStack {
+                                        TextField(
+                                            "",
+                                            text: $pwd,
+                                            prompt: Text("Senha:")
+                                        )
+                                            .padding(.leading, 15)
+                                            .foregroundColor(.black)
                                     
-                    }
+                                        Spacer()
+                                        Image(systemName: "eye")
+                                            .foregroundColor(.black)
+                                            .padding(.trailing, 15)
+                                            .opacity(0.4)
+                                        
+                                    }
+                                }
+                                .frame(height: 40)
+                                .padding(.horizontal, 30)
+                                
+                                HStack{
+                                    
+                                    Text("esqueci minha senha")
+                                        .foregroundColor( .white)
+                                        .font(.system(size: 16))
+                                        .underline()
+                                        .padding(.leading, 180)
+                                        
+                                    
+                                    
+                                }
+
+                                NavigationLink {
+                                    TabBarView()                                }
+                                
+                                label: {
+                                    
+                                
+                                    HStack(spacing: 15){
+                                        
+                                        
+                                        //Texto
+                                        
+                                        Text("Cadastrar")
+                                            .font(.system(size: 24))
+                                    }
+                                        
+                                }
+                                
+                                .foregroundColor(.black)
+                                .padding(15)
+                                .frame(maxWidth: 200, maxHeight: 60)
+                                .background(Color.VERDE)
+                                .cornerRadius(30)
+                                .overlay(RoundedRectangle(cornerRadius: 30)
+                                 .stroke(Color.ESCURO, lineWidth: 3))
+                                
+                                        
+                        }
+                            
+                        }
+                        .padding(0)
+                        
+                        
                         
                     }
-                    .padding(0)
                     
-                    
-                    
+                    Spacer()
                 }
-                
-                Spacer()
             }
+            .padding(.vertical, 10)
         }
-        
+        .navigationBarBackButtonHidden(true)
     }
 }
 
