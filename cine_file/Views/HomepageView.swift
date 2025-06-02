@@ -29,6 +29,7 @@ struct HomepageView: View {
             Image("grid")
                 .resizable()
                 .ignoresSafeArea(edges: .top)
+                .opacity(0.8)
             
             ScrollView{
                 // MARK: Stack principal dos elementos na tela

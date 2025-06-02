@@ -20,11 +20,24 @@ struct ListView: View{
     /// Toda vez que essa propriedade é alterada o wrapper @State permite que a view seja renderizada novamente para atualizar (ou seja, chama o body novamente)
     /// OBS.: não esquecer que deve-se interpretar essa parte como propriedades e não apenas variáveis!!!!!!!!!!
     
+    private var color : Color{
+        if (viewFavs && viewWatch) || (!viewFavs && !viewWatch){
+            return Color.VERDE
+        }
+        
+        if viewFavs{
+            return Color.ROSA
+        }
+        
+        return Color.AZUL
+    }
+    
     var body: some View{
             ZStack{
                 Image("grid")
                     .resizable()
                     .ignoresSafeArea(edges: .bottom)
+                    .opacity(0.4)
                 
                 ScrollView{
                     
@@ -41,7 +54,7 @@ struct ListView: View{
                                 
                                 // Símbolo de voltar para a home
                                 Image(systemName: "chevron.backward")
-                                    .foregroundStyle(Color.VERDE)
+                                    .foregroundStyle(color)
                                     .font(.system(size: 30))
                             }
                             
@@ -57,7 +70,7 @@ struct ListView: View{
                                 
                                 // Símbolo de coração
                                 Image(systemName: viewWatch ?  "checkmark.circle.fill" : "checkmark.circle")
-                                    .foregroundStyle(Color.VERDE)
+                                    .foregroundStyle(color)
                                     .font(.system(size: 30))
                             }
 
@@ -71,7 +84,7 @@ struct ListView: View{
                                 
                                 // Símbolo de coração
                                 Image(systemName: viewFavs ?  "heart.fill" : "heart")
-                                    .foregroundStyle(Color.VERDE)
+                                    .foregroundStyle(color)
                                     .font(.system(size: 30))
                             }
                             

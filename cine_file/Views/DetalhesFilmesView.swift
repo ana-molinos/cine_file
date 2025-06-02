@@ -25,6 +25,7 @@ struct DetalhesFilmesView: View {
                 .resizable()
                 .frame(maxWidth: .infinity)
                 .ignoresSafeArea()
+                .opacity(0.4)
             
             ScrollView(.vertical, showsIndicators: false){
             VStack {

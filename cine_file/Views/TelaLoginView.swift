@@ -24,6 +24,7 @@ struct TelaLoginView: View {
                 .resizable()
                 .frame(maxWidth: .infinity) ///ocupa toda a largura da tera
                 .ignoresSafeArea(edges: .bottom)
+                .opacity(0.8)
             
             // MARK: Stack Vertical contendo os elementos da camada mais superficial
             
