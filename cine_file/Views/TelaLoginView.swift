@@ -117,7 +117,7 @@ struct TelaLoginView: View {
                                 }
 
                                 NavigationLink {
-                                    TabBarView()                                }
+                                    OnboardingView()                                }
                                 
                                 label: {
                                     

@@ -7,7 +7,11 @@
 import SwiftUI
 
 struct DetalhesFilmesView: View {
-    let filme: FilmModel
+    var filme: FilmModel
+    
+    @State private var fav : Bool = false
+    @State private var watch : Bool = false
+    
     var body: some View {
        
         
@@ -32,10 +36,11 @@ struct DetalhesFilmesView: View {
                 
                 Image (filme.imgName)
                     .resizable()
-                    .scaledToFill()
-                    .frame(width: .infinity, height: 400)
-                    .offset(y: 80)
+                    .scaledToFit()
+                    .frame(width: .infinity)
+                    //.offset(y: 80)
                     .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
+                
                 Spacer()
                 
                 
@@ -58,17 +63,28 @@ struct DetalhesFilmesView: View {
                         
                         
                         HStack(){
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.VERDE)
-                                .font(.system(size: 28))
+                            
+                            Button{
+                                //filme.watched = true
+                                watch.toggle()
+                            } label: {
+                                Image(systemName: watch ? "checkmark.circle.fill" : "checkmark.circle")
+                                    .foregroundColor(.VERDE)
+                                    .font(.system(size: 28))
+                            }
                             
                             
-                            Image(systemName: "heart")
-                                .font(.system(size: 28))
-                                .foregroundColor(.VERDE)
-                            
-                                .padding(.trailing)
-                                .padding(.horizontal)
+                            Button{
+                                fav.toggle()
+                            } label:
+                            {
+                                Image(systemName: fav ? "heart.fill" : "heart")
+                                    .font(.system(size: 28))
+                                    .foregroundColor(.VERDE)
+                                
+                                    .padding(.trailing)
+                                    .padding(.horizontal)
+                            }
                         }
                         
                     }
@@ -248,6 +264,18 @@ struct DetalhesFilmesView: View {
             
 
 #Preview {
-    DetalhesFilmesView(filme: FilmModel(imgName: "filme16", title: "Os Serviços de Entrega da Kiki", synopsis: "Por ordem de sua mãe, Kiki parte para um aprendizado de um ano, acompanhada por seu gato preto. A um comando de sua vassoura mágica, ela vai parar na charmosa cidadezinha de Moreoastal. Infelizmente, os hotéis locais não aceitam bruxas e a polícia a flagra fazendo algumas travessuras.", direction: "Hayao Miyazaki", screenwriters: "Hayao Miyazaki, Jack Fletcher, John Semper", year: "1990", favorited: false, watched: false) )
-    
+    // Cria um FilmModel “de exemplo”
+        let exemplo = FilmModel(
+            imgName: "filme16",
+            title: "Os Serviços de Entrega da Kiki",
+            synopsis: "Por ordem de sua mãe, Kiki parte para um aprendizado de um ano, acompanhada por seu gato preto. A um comando de sua vassoura mágica, ela vai parar na charmosa cidadezinha de Moreoastal. Infelizmente, os hotéis locais não aceitam bruxas e a polícia a flagra fazendo algumas travessuras.",
+            direction: "Hayao Miyazaki",
+            screenwriters: "Hayao Miyazaki, Jack Fletcher, John Semper",
+            year: "1990",
+            favorited: false,
+            watched: false
+        )
+
+        // Passe esse modelo como Binding usando .constant(...)
+        DetalhesFilmesView(filme: (exemplo))
 }

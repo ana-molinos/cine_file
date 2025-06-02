@@ -78,7 +78,7 @@ struct OnboardingView: View{
                     }
                     else {
                         NavigationLink{
-                            HomepageView()
+                            TabBarView()
                         } label: {
                             Image(systemName: "arrow.right.circle.fill")
                                 .foregroundStyle(Color.VERDE)
