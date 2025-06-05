@@ -7,23 +7,18 @@
 import SwiftUI
 
 struct DetalhesFilmesView: View {
-    var filme: FilmModel
     
-    @State private var fav : Bool = false
-    @State private var watch : Bool = false
+    /// "Propriedade variável do tipo filme com wrapper Binding (ou seja, é uma referência ao objeto filme)
+    @Binding var filme: FilmModel
+    @State var isFav = false
     
     var body: some View {
-       
-        
-        
         
         ZStack {
             Rectangle()
                 .fill(Color.ESCURO)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea()
-            
-            
                 
             Image ("grid")
                 .resizable()
@@ -37,7 +32,7 @@ struct DetalhesFilmesView: View {
                 Image (filme.imgName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: .infinity)
+                    .frame(maxWidth: .infinity)
                     //.offset(y: 80)
                     .cornerRadius(60, corners: [.bottomLeft, .bottomRight])
                 
@@ -65,26 +60,32 @@ struct DetalhesFilmesView: View {
                         HStack(){
                             
                             Button{
-                                //filme.watched = true
-                                watch.toggle()
+                                filme.watched.toggle()
+                                
                             } label: {
-                                Image(systemName: watch ? "checkmark.circle.fill" : "checkmark.circle")
-                                    .foregroundColor(.VERDE)
-                                    .font(.system(size: 28))
+                                VStack{
+                                    Image(systemName: filme.watched ? "checkmark.circle.fill" : "checkmark.circle")
+                                        .foregroundColor(.VERDE)
+                                        .font(.system(size: 28))
+                                }
                             }
                             
                             
                             Button{
-                                fav.toggle()
+                                filme.favorited.toggle()
+                                isFav.toggle()
                             } label:
                             {
-                                Image(systemName: fav ? "heart.fill" : "heart")
+                                Image(systemName: isFav ? "heart.fill" : "heart")
                                     .font(.system(size: 28))
                                     .foregroundColor(.VERDE)
                                 
                                     .padding(.trailing)
                                     .padding(.horizontal)
                             }
+                        }
+                        .onAppear{
+                            isFav = filme.favorited
                         }
                         
                     }
@@ -277,5 +278,5 @@ struct DetalhesFilmesView: View {
         )
 
         // Passe esse modelo como Binding usando .constant(...)
-        DetalhesFilmesView(filme: (exemplo))
+    DetalhesFilmesView(filme: .constant(exemplo))
 }

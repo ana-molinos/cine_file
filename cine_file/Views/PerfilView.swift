@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PerfilView: View {
     
-    private let films: [FilmModel] = [FilmModel].films()
+    @Binding var films: [FilmModel]
     
     var body: some View {
         NavigationStack{
@@ -60,13 +60,13 @@ struct PerfilView: View {
                             ScrollView(.horizontal, showsIndicators: false){
                                 
                                 HStack{
-                                    ForEach(films){ film in
-                                        if film.favorited{
+                                    ForEach(films.indices, id: \.self) { index in
+                                        if films[index].favorited{
                                             
                                             NavigationLink{
-                                                DetalhesFilmesView(filme: film)
+                                                DetalhesFilmesView(filme: $films[index])
                                             } label: {
-                                                Image(film.imgName)
+                                                Image(films[index].imgName)
                                                     .resizable()
                                                     //.scaledToFill()
                                                     .frame(width: 150, height: (150*1.34))
@@ -94,13 +94,13 @@ struct PerfilView: View {
                             ScrollView(.horizontal, showsIndicators: false){
                                 
                                 HStack{
-                                    ForEach(films){ film in
-                                        if film.watched{
+                                    ForEach(films.indices, id: \.self) { index in
+                                        if films[index].watched{
                                             
                                             NavigationLink{
-                                                DetalhesFilmesView(filme: film)
+                                                DetalhesFilmesView(filme: $films[index])
                                             } label: {
-                                                Image(film.imgName)
+                                                Image(films[index].imgName)
                                                     .resizable()
                                                     //.scaledToFill()
                                                     .frame(width: 150, height: (150*1.34))
@@ -129,9 +129,9 @@ struct PerfilView: View {
                             ScrollView(.horizontal, showsIndicators: false){
                                 
                                 HStack(spacing: 25){
-                                    ForEach(films){ film in
+                                    ForEach(films.indices, id: \.self) { index in
                                         VStack(alignment: .center, spacing: 20){
-                                            Text(film.title)
+                                            Text(films[index].title)
                                                 .lineLimit(1)
                                                 .bold()
                                                 .frame(maxWidth: .infinity)
@@ -140,7 +140,7 @@ struct PerfilView: View {
                                                 .frame(maxWidth: .infinity, maxHeight: 1)
                                                 .padding(.horizontal, -20)
                                                 
-                                            Text(film.review)
+                                            Text(films[index].review)
                                             
                                             Spacer()
                                         }
@@ -163,5 +163,5 @@ struct PerfilView: View {
 }
 
 #Preview {
-    PerfilView()
+    PerfilView(films: .constant([FilmModel].films()))
 }

@@ -10,17 +10,19 @@ import SwiftUI
 // MARK: View para definir apenas a aparência da home, a parte de funcional para poder navegar na tabbar ficara em outro arquivo
 
 struct HomepageView: View {
-    private let films: [FilmModel] = [FilmModel].films() /// Uma variavel do tipo Array de FilmModels que recebe a lista de filmes montada na extesão da struct
+    
+    /// "Propriedade variável do tipo lista de objetos FilmModel, binding pois é uma referência ao objeto lista)"
+    @Binding var films: [FilmModel]
     
     /// Embaralha e pega 8 aleatórios para criar a lista de filmes do momento
-    private var momentFilms: [FilmModel] {
-            Array(films.shuffled().prefix(8))
-        }
+//    private var momentFilms: [FilmModel] {
+//            Array(films.shuffled().prefix(8))
+//        }
     
     /// Embaralha e pega 5 aleatórios para criar a lista de filmes populares entre amigos
-    private var friendsPop: [FilmModel] {
-            Array(films.shuffled().prefix(5))
-        }
+//    private var friendsPop: [FilmModel] {
+//            Array(films.shuffled().prefix(5))
+//        }
 
     var body: some View {
         
@@ -82,12 +84,12 @@ struct HomepageView: View {
                                 HStack(spacing: 25){
                                     
                                     // Loop que itera sobre a lista de filmes
-                                    ForEach(momentFilms){ film in
+                                    ForEach(0..<min(films.count, 5), id: \.self) { index in
                                         
                                         NavigationLink{
-                                            DetalhesFilmesView(filme: film)
+                                            DetalhesFilmesView(filme: $films[index]) /// Passagem por referência
                                         } label:{
-                                            Image(film.imgName)
+                                            Image(films[index].imgName)
                                                 .resizable()
                                                 //.scaledToFill()
                                                 .frame(width: 200, height: (200*1.34))
@@ -121,12 +123,12 @@ struct HomepageView: View {
                                 // MARK: Stack de organização dos filmes
                                 HStack(spacing: 25){
                                     
-                                    ForEach(friendsPop){ film in
+                                    ForEach(0..<min(films.count, 8), id: \.self) { index in
                                         
                                         NavigationLink{
-                                            DetalhesFilmesView(filme: film)
+                                            DetalhesFilmesView(filme: $films[index]) /// Passagem por referência
                                         } label: {
-                                            Image(film.imgName)
+                                            Image(films[index].imgName)
                                                 .resizable()
                                                 //.scaledToFill()
                                                 .frame(width: 200, height: (200*1.34))
@@ -160,13 +162,13 @@ struct HomepageView: View {
                                 // MARK: Stack de organização da lista
                                 HStack(spacing: 25){
                                     
-                                    ForEach(films){ film in
+                                    ForEach($films) { $film in
                                         
                                         /// Só mostra o filme se ele foi setado como favorito no app
                                         if film.favorited{
                                             
                                             NavigationLink{
-                                                DetalhesFilmesView(filme: film)
+                                                DetalhesFilmesView(filme: $film)
                                             } label:{
                                                 Image(film.imgName)
                                                     .resizable()
@@ -199,5 +201,5 @@ struct HomepageView: View {
 }
 
 #Preview {
-    HomepageView()
+    HomepageView(films: .constant([FilmModel].films()))
 }
